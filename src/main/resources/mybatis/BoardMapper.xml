@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="BoardMapper">
+
+	<resultMap id="boardResult" type="com.spring5.mypro01.board.vo.BoardVO">
+		<result property="boardNO" column="boardNO"/>
+		<result property="title" column="title"/>
+		<result property="content" column="content"/>
+		<result property="imageFileName" column="imageFileName"/>
+		<result property="writeDate" column="writeDate"/>
+		<result property="id" column="id"/>
+	</resultMap>
+
+	<select id="selectAllBoardList" resultMap="boardResult">
+		SELECT * FROM hr.t_board01 WHERE DELFLAG='N' ORDER BY writeDate DESC
+	</select>
+	
+	<select id="viewBoard" resultMap="boardResult" parameterType="Integer">
+		select * from hr.t_board01 where boardNO=#{boardNO}
+	</select>
+	
+	<select id="selectId" resultType="com.spring5.mypro01.board.vo.BoardVO" parameterType="com.spring5.mypro01.board.vo.BoardVO">
+		SELECT id FROM hr.t_board01 WHERE id=UPPER(#{id})
+	</select>
+	
+	<insert id="insertBoard" parameterType="HashMap">
+		INSERT INTO hr.t_board01(BOARDNO, TITLE, CONTENT,IMAGEFILENAME, WRITEDATE, ID, DELFLAG)
+		VALUES(t_board01seq.nextval,#{title},#{content},#{imageFileName},default,UPPER(#{id}),default)
+	</insert>
+	
+	<update id="updateBoard" parameterType="com.spring5.mypro01.board.vo.BoardVO">
+		UPDATE hr.t_board01 
+		SET title=#{title},content=#{content}
+		WHERE boardNO=#{boardNO}
+	</update>
+	
+	<update id="deleteRequest" parameterType="int">
+		UPDATE hr.t_board01
+		SET delFlag = 'Y'
+		WHERE boardNO=#{boardNO}
+	</update>
+	
+	<delete id="deleteBoard" parameterType="int">
+		DELETE FROM hr.t_board01 WHERE boardNO=#{boardNO}
+	</delete>
+	
+<!--	<select id="SearchBoard" parameterType="String" resultType="String">
+		SELECT (CASE WHEN COUNT(*)=0 THEN 'usable'
+				ELSE 'not_usable' END) AS RESULT
+		FROM hr.t_board01 WHERE boardNO=#{boardNO}
+	</select>
+
+	<delete id="deleteAllBoard">
+		DELETE FROM hr.t_board01 WHERE id=#{id}
+	</delete> -->
+</mapper>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+		  
+<mapper namespace="MemberMapper">
+
+	<resultMap id="memberResult" type="com.spring5.mypro01.member.vo.MemberVO">
+		<result property="id" column="id"/>
+		<result property="password" column="password"/>
+		<result property="name" column="name"/>
+		<result property="phoneNO" column="phoneNO"/>
+		<result property="email" column="email"/>
+		<result property="boardNO" column="boardNO"/>
+		<result property="commentNO" column="commentNO"/>
+		<result property="joinDate" column="joinDate"/>
+		<result property="delFlag" column="delFlag"/>
+	</resultMap>
+
+	<!-- 모든 회원 목록 조회 -->
+	<select id="selectMembersList" resultMap="memberResult">
+		SELECT * FROM hr.t_member01 ORDER BY joinDate DESC
+	</select>
+	
+	<!-- id 중복체크 -->
+  	<select id="memberIdCheck" parameterType="String" resultType="String">
+		SELECT (CASE WHEN COUNT(*)=0 THEN 'usable'
+				ELSE 'not_usable' END) AS RESULT
+		FROM hr.t_member01 WHERE id=UPPER(#{id})
+	</select>
+	
+	<!-- 회원검색 -->	
+ 	<select id="SearchMember" parameterType="String" resultType="member">
+		select * FROM hr.t_member01 WHERE id=UPPER(#{id})
+	</select>
+	
+	<!-- 회원가입 -->
+	<insert id="insertMember" parameterType="member">
+		INSERT INTO hr.t_member01
+		VALUES(UPPER(#{id}),#{password},UPPER(#{name}),#{phoneNO},#{email},default,default)
+	</insert>
+
+	<!-- id password 중복체크 -->
+	<select id="idpasswordCheck" resultType="int">
+		SELECT COUNT(*) FROM  hr.t_member01
+		WHERE id=UPPER(#{id}) AND password=#{password}
+	</select>
+
+	<!-- 회원 삭제요청 -->
+	<update id="deleteRequest" parameterType="com.spring5.mypro01.member.vo.MemberVO">
+		UPDATE hr.t_member01
+		SET delFlag = 'Y'
+		WHERE id = UPPER(#{id}) AND password = #{password}
+	</update>
+
+	<!-- 회원 삭제 -->
+	<delete id="deleteMember" parameterType="String">
+		DELETE FROM hr.t_member01 WHERE id=#{id}
+	</delete>
+
+	<!-- 마이페이지 -->
+	<select id="myInfo" resultType="com.spring5.mypro01.member.vo.MemberVO" parameterType="member">
+		SELECT * FROM hr.t_member01 WHERE id=UPPER(#{id})
+	</select>
+
+	<!-- 마이페이지 수정 -->	
+	 <update id="updateMember" parameterType="com.spring5.mypro01.member.vo.MemberVO"> 
+		UPDATE hr.t_member01
+		SET password=#{password}, phoneNO=#{phoneNO}, email=#{email}
+		WHERE id=#{id}
+	</update>
+</mapper>

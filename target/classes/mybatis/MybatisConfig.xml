@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<typeAliases>
+		<typeAlias alias="member" type="com.spring5.mypro01.member.vo.MemberVO"/>
+		<typeAlias alias="board" type="com.spring5.mypro01.board.vo.BoardVO"/>
+		<typeAlias alias="comment" type="com.spring5.mypro01.board.vo.CommentVO"/>
+	</typeAliases>
+
+</configuration>
