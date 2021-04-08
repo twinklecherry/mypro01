@@ -22,7 +22,7 @@ public class FileDownloadController extends HttpServlet {
 		response.setContentType("text/html;charset=utf-8");
 		
 		String imageFileName = (String) request.getParameter("imageFileName");
-		String articleNO = request.getParameter("articleNO");
+		String articleNO = request.getParameter("boardNO");
 		System.out.println("imageFileName = " + imageFileName);
 		
 		OutputStream out = response.getOutputStream();

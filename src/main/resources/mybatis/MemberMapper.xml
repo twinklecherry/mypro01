@@ -54,7 +54,7 @@
 
 	<!-- 회원 삭제 -->
 	<delete id="deleteMember" parameterType="String">
-		DELETE FROM hr.t_member01 WHERE id=#{id}
+		DELETE FROM hr.t_member01 WHERE id=UPPER(#{id})
 	</delete>
 
 	<!-- 마이페이지 -->
