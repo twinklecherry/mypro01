@@ -65,34 +65,34 @@
 	  <thead>
 	    <tr align="center">
 	      <th scope="col">#</th>
-	      <th scope="col">답글번호</th>
+	      <th scope="col">답글</th>
 	      <th scope="col">내용</th>
 	      <th scope="col">작성자</th>
-	      <th scope="col">답글 작성 날짜</th>
+	      <th scope="col">작성 날짜</th>
+	      <th scope="col"></th>
 	    </tr>
 	  </thead>
 	  <tbody>
 	<c:choose>
 		<c:when test="${empty commentList}">
 			<tr align="center">
-				<td colspan=5>첫 답글의 주인공이 되주세요.</td>
+				<td colspan=6>첫 답글의 주인공이 되주세요.</td>
 			</tr>
 		</c:when>
 		<c:otherwise>
 			<c:forEach var="comment" items="${commentList}" varStatus="commentNum">
 					<tr align="center">
-						<td width="5%">&rdsh;</td>
-						<td width="5%">${comment.commentNO}</td>
-						<td width="10%">${comment.content}</td>
-						<td width="10%">${comment.id }</td>
-						<td width="10%">${comment.writeDate }</td>
-						
+						<td>&rdsh;</td>
+						<td>${comment.commentNO}</td>
+						<td>${comment.content}</td>
+						<td>${comment.id }</td>
+						<td>${comment.writeDate }</td>
+						<td>
 						<c:if test="${sessionScope.id==comment.id || sessionScope.id=='cherry'}">
-							<td>
 								<input type="hidden" name="boardNO" value="${board.boardNO}">
 								<button type="button" class="btn btn-secondary" onclick="location.href='/mypro01/board/removeComment.do?commentNO=${comment.commentNO}'">댓글삭제</button>
-							</td>
 						</c:if>
+						</td>
 					</tr>
 				</c:forEach>
 		</c:otherwise>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="CommentMapper">
+
+	<resultMap id="commentResult" type="com.spring5.mypro01.board.vo.CommentVO">
+		<result property="commentNO" column="commentNO"/>
+		<result property="boardNO" column="boardNO"/>
+		<result property="content" column="content"/>
+		<result property="writeDate" column="writeDate"/>
+		<result property="id" column="id"/>
+	</resultMap>
+
+	<select id="selectAllCommentList" resultMap="commentResult">
+		SELECT commentNO,boardNO,content,writeDate,id FROM hr.t_comment01
+		WHERE BOARDNO=#{boardNO} ORDER BY writeDate DESC
+	</select>
+	
+	<insert id="insertComment" parameterType="com.spring5.mypro01.board.vo.CommentVO">
+		INSERT INTO hr.t_comment01
+		VALUES(t_comment01seq.nextval,#{boardNO},#{content},default,UPPER(#{id}))
+	</insert>
+
+	<delete id="deleteComment" parameterType="int">
+		DELETE FROM hr.t_comment01 WHERE commentNO=#{commentNO}
+	</delete>
+
+</mapper>
