@@ -59,14 +59,32 @@
 
 ***
 
+* 메인페이지
+    - 부트스트랩을 이용해 header, footer 생성
+    - HttpSession와 <c:if>태그를 이용해 로그인을 하게되면 index페이지에 로그인한 id를 표시
+    - iframe을 이용해 YouTube의 동영상을 연결
+
 * 스터디모집
-     - 설명작성
-     - 설명작성
+     - 게시판 목록보기는 controller에서 ModelAndView 객체를 이용해 데이터를 받음
+     - jsp페이지에 표현언어와 JSTL을 이용해 <c:forEach>구문을 사용해 테이블 구성
+     - 관리자의 경우, 모든 페이지를 수정 및 삭제 가능
 
 * 마이페이지
-     - 설명작성
-     - 설명작성
-     - 
+    - 주입된 sqlSession 빈의 select,insert,update 메소드에 실행할 SQL문의 id를 전달하여 호출하여 데이터베이스에 접속하여 SQL문을 처리 후 결과를 반환받아 변수에 저장
+    - 회원 조회
+        + MemberSerivce 클래스가 memberService id로 memberService 필드에 자동 주입되도록 설정
+        + 조회한 회원 정보를 ModelAndView 의 addObject()메서드를 이용해 바인딩
+	
+    - 회원 등록
+        + @ModelAttribute("member") MemberVO member 를 사용해 회원 가입창에서 전송된 값들이 MemberVO 객체의 속성에 저장
+        + 값들이 설정된 MemberVO 객체를 SQL 문으로 전달해 회원등록
+
+    - 회원 수정
+         + 값들이 설정된 MemberVO 객체를 SQL 문으로 전달해 회원수정
+
+    - 회원 탈퇴
+        + 탈퇴여부 Flag를 update문을 기본값인 'N'에서 'Y'값으로 변경 
+
 * 관리자페이지
-     - 설명작성
-     - 설명작성
+     - 회원과 게시글의 전체 목록을 불러와서 수정 및 삭제가능
+     - 탈퇴여부나 삭제여부가 'Y'로 변한 회원 및 게시글 delete문으로 삭제
