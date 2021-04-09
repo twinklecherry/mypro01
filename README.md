@@ -35,6 +35,10 @@
 ![image](https://user-images.githubusercontent.com/69239555/114142788-522b4b80-994e-11eb-99fb-b2084c23951c.png)
 
 ***
+### 흐름도
+![개인프로젝트_흐름도](https://user-images.githubusercontent.com/69239555/114159226-860f6c80-9960-11eb-83e0-50bd58604fdd.jpg)
+
+***
 ### 목차
 + [스터디모집](https://github.com/twinklecherry/mypro01/blob/main/src/main/java/com/spring5/mypro01/board/controller/BoardControllerImpl.java)
   + 전체목록리스트
@@ -76,11 +80,11 @@
         + 조회한 회원 정보를 ModelAndView 의 addObject()메서드를 이용해 바인딩
 	
     - 회원 등록
-        + @ModelAttribute("member") MemberVO member 를 사용해 회원 가입창에서 전송된 값들이 MemberVO 객체의 속성에 저장
-        + 값들이 설정된 MemberVO 객체를 SQL 문으로 전달해 회원등록
+        + ModelAttribute를 사용해 회원 가입창에서 전송된 값들이 VO객체의 속성에 저장
+        + 값들이 설정된 VO 객체를 SQL 문으로 전달해 회원등록
 
     - 회원 수정
-         + 값들이 설정된 MemberVO 객체를 SQL 문으로 전달해 회원수정
+         + 값들이 설정된 VO 객체를 SQL 문으로 전달해 회원수정
 
     - 회원 탈퇴
         + 탈퇴여부 Flag를 update문을 기본값인 'N'에서 'Y'값으로 변경 
