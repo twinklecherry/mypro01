@@ -1,8 +1,8 @@
 # mypro01(Study Room)
 # 스터디 모집 게시판 
 
-![index](https://user-images.githubusercontent.com/69239555/114142573-11cbcd80-994e-11eb-8347-9cba1338e278.png)
-![index](https://user-images.githubusercontent.com/69239555/114143396-12189880-994f-11eb-8494-2f0326537ddd.png)
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/69239555/114146254-50fc1d80-9952-11eb-90c6-6153751c44df.gif)
+
 
 ### 2020.12.22. ~ 2021-01-07 (17일 주말 및 공휴일포함)
 ***
