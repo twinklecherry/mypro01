@@ -69,7 +69,7 @@ public class BoardDAOImpl implements BoardDAO{
 	//게시물 검색
 	@Override
 	public List<BoardVO> searchBoard(String title) throws DataAccessException {
-		return sqlSession.selectList("BoardMapper.searchBoard");
+		return sqlSession.selectList("BoardMapper.searchBoard", title);
 	}
 
 }

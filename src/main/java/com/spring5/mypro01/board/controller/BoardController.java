@@ -32,7 +32,7 @@ public interface BoardController {
 	//게시글 삭제
 	public String removeBoard(@RequestParam("boardNO") int boardNO) throws Exception;
 	//게시글 검색
-	public ModelAndView searchBoard(BoardVO boardVO, String title) throws Exception;
+	public ModelAndView searchBoard(@ModelAttribute("title") String title) throws Exception;
 	
 	
 	//===================================comment

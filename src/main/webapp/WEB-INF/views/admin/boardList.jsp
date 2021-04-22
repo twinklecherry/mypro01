@@ -61,7 +61,7 @@
     </tr>
 	</c:when>
 	<c:when test="${not empty boardList}">
-	    <c:forEach  var="board" items="${boardList }" varStatus="boardNum">
+	    <c:forEach var="board" items="${boardList }" varStatus="boardNum">
 	     <tr align="center">
 			<td width="5%">${board.boardNO}</td>
 			<td width="10%">${board.id }</td>

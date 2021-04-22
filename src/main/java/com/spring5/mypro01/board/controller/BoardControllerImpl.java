@@ -138,11 +138,12 @@ public class BoardControllerImpl implements BoardController{
 	//게시글 검색
 	@Override
 	@PostMapping("/admin/isTitleFind")
-	public ModelAndView searchBoard(BoardVO boardVO, String title) throws Exception {
+	public ModelAndView searchBoard(@ModelAttribute("title") String title) throws Exception {
 		ModelAndView mav = new ModelAndView("admin/boardList");
 		List<BoardVO> boardList = boardService.searchBoard(title);
 		System.out.println("searchBoard : " + title);
 		mav.addObject("boardList", boardList);
+		System.out.println("boardList : " + boardList);
 		return mav;
 	}
 	
