@@ -34,6 +34,12 @@
 	</form>
 </nav>
 <section>
+	<h2>게시물제목을 검색해주세요</h2>
+	<form name="frmSearchTitle" method="post" action="/mypro01/admin/isTitleFind">
+		<input type="text" name="title" id="titleFind" placeholder="글제목입력">
+		<input type="submit" value="검색">
+	</form>
+
 <table class="tb">
 	<tr height="10" bgcolor="lightyellow">
     	<td>글번호</td>

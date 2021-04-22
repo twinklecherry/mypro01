@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -42,7 +43,7 @@ public class BoardControllerImpl implements BoardController{
 	private static final String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";
 	private static final Logger logger = LoggerFactory.getLogger(BoardControllerImpl.class);
 
-
+//=======================board
 	//관리자게시물리스트
 	@Override
 	@RequestMapping(value="/admin/boardList.do", method={RequestMethod.GET, RequestMethod.POST})
@@ -127,11 +128,22 @@ public class BoardControllerImpl implements BoardController{
 	
 	//admin 게시물삭제
 	@Override
-	@RequestMapping(value="/board/removeBoard.do", method=RequestMethod.GET)
+	@GetMapping(value="/board/removeBoard.do")
 	public String removeBoard(@RequestParam("boardNO") int boardNO) throws Exception {
 		boardService.removeBoard(boardNO);
 		System.out.println("게시물삭제NO : "+boardNO);
 		return "redirect:/admin/boardList.do";
+	}
+	
+	//게시글 검색
+	@Override
+	@PostMapping("/admin/isTitleFind")
+	public ModelAndView searchBoard(BoardVO boardVO, String title) throws Exception {
+		ModelAndView mav = new ModelAndView("admin/boardList");
+		List<BoardVO> boardList = boardService.searchBoard(title);
+		System.out.println("searchBoard : " + title);
+		mav.addObject("boardList", boardList);
+		return mav;
 	}
 	
 	//파일업로드
@@ -176,9 +188,8 @@ public class BoardControllerImpl implements BoardController{
 		}
 		return articleMap;
 	}
-
 	
-	//===============================댓글
+//===============================댓글
 	
 	//답변등록
 	@Override

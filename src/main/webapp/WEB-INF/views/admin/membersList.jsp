@@ -37,7 +37,7 @@
 	<h2>회원이름을 검색해주세요</h2>
 	<form name="frmSearchName" method="post" action="/mypro01/admin/isIdFind.do">
 		<input type="text" name="id" id="idFind" placeholder="아이디입력"/>
-		<input type="submit" value="조회"/>
+		<input type="submit" value="검색"/>
 	</form>
 	
 	<table>		

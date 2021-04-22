@@ -51,5 +51,11 @@ public class BoardServiceImpl implements BoardService{
 	public int removeBoard(int boardNO) throws DataAccessException {
 		return boardDAO.deleteBoard(boardNO);
 	}
+	
+	//게시물 검색
+	@Override
+	public List<BoardVO> searchBoard(String title) throws DataAccessException {
+		return boardDAO.searchBoard(title);
+	}
 
 }
