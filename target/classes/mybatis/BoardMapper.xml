@@ -18,6 +18,18 @@
 		SELECT * FROM hr.t_board01 WHERE DELFLAG='N' ORDER BY writeDate DESC
 	</select>
 	
+	<!-- 전체 게시물 페이징 -->
+	<select id="selectBoardPaging" resultType="com.spring5.mypro01.board.vo.BoardVO">
+	<![CDATA[
+		SELECT boardNO, title, content, imageFileName, writeDate, id
+		FROM ( SELECT /*+ INDEX_DESC (a pk_board01)*/ rownum rn, a.*
+				FROM hr.t_board01 a
+				WHERE rownum <=( #{pageNum} * #{amount} ) 
+			)
+		WHERE rn >= ( #{pageNum} * #{amount} ) - ( #{amount}-1 )
+	]]>
+	</select>
+	
 	<!-- 게시물 상세 -->	
 	<select id="viewBoard" resultMap="boardResult" parameterType="Integer">
 		select * from hr.t_board01 where boardNO=#{boardNO}
@@ -62,4 +74,5 @@
 <!--	<delete id="deleteAllBoard">
 		DELETE FROM hr.t_board01 WHERE id=#{id}
 	</delete> -->
+	
 </mapper>

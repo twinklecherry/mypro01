@@ -106,7 +106,16 @@
 		<input type="submit" value="검색"/>
 	</form>
 	
-	<table>	
+	<table>		
+	<c:choose>
+		<c:when test="${empty membersList}">
+			<tr>
+				<td colspan=9>
+					<strong>등록된 회원이 없습니다.</strong>
+				</td>
+			</tr>
+		</c:when>
+		<c:when test="${not empty membersList}">
 			<tr bgcolor="lightyellow">
 				<td>아이디</td>
 				<td>비밀번호</td>
@@ -117,16 +126,7 @@
 				<td>삭제요청</td>
 				<td>수정</td>
 				<td>삭제</td>
-			</tr>	
-	<c:choose>
-		<c:when test="${empty membersList}">
-			<tr>
-				<td colspan=9>
-					<strong>등록된 회원이 없습니다.</strong>
-				</td>
 			</tr>
-		</c:when>
-		<c:when test="${not empty membersList}">
 			<c:forEach var="member" items="${membersList }">
 			<tr>
 				<td>${member.id }</td>
